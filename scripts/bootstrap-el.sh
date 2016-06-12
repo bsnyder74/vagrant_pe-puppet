@@ -41,7 +41,7 @@ echo "192.168.250.110 pe-puppet.example.com" >> /etc/hosts
 echo "installing puppet enterprise with answer file ..."
 sudo /tmp/puppet-enterprise-2016.1.2-el-7-x86_64/puppet-enterprise-installer -a /tmp/install.answer
 echo "installing hiera-eyaml ..."
-sudo /opt/puppetlabs/puppet/bin/gem install hiera-eyaml
+sudo /opt/puppetlabs/puppet/bin/gem install hiera-eyaml --no-ri --no-rdoc
 sudo /opt/puppetlabs/bin/puppetserver gem install hiera-eyaml
 if [ -a /etc/puppetlabs/puppet/puppet.conf ]; then
   echo "cleaning up ..."
