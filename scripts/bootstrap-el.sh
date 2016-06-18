@@ -3,10 +3,9 @@
 if [ -a /home/vagrant/sync/source/puppet.tar.gz ]; then
   cp /home/vagrant/sync/source/puppet.tar.gz /tmp
 else
-  sudo yum install wget -y
   url="https://pm.puppetlabs.com/cgi-bin/download.cgi?dist=el&rel=7&arch=x86_64&ver=latest"
   echo "downloading latest version of puppet enterprise. This will take several minutes ..."
-  wget -O /tmp/puppet.tar.gz "$url" -nv
+  curl --progress-bar -Lo /tmp/puppet.tar.gz $url
 fi
 
 cp /home/vagrant/sync/scripts/install.answer /tmp
