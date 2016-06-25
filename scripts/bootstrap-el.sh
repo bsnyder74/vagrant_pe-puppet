@@ -9,6 +9,7 @@ else
 fi
 
 cp /home/vagrant/sync/scripts/install.answer /tmp
+cp /home/vagrant/sync/scripts/pe.conf /tmp
 
 echo 'extracting tarball ...'
 tar xvf /tmp/puppet.tar.gz -C /tmp
@@ -25,6 +26,7 @@ else
 fi
 
 echo "adding firewall rules ..."
+firewall-cmd --zone=public --add-port=3000/tcp --permanent
 firewall-cmd --zone=public --add-port=8140/tcp --permanent
 firewall-cmd --zone=public --add-port=443/tcp --permanent
 firewall-cmd --zone=public --add-port=61613/tcp --permanent
@@ -38,7 +40,8 @@ echo "192.168.250.110 pe-puppet.example.com" >> /etc/hosts
 # Install w/answer file
 echo "installing puppet enterprise with answer file ..."
 # Below will work with latest version unless puppet changes installer name/path
-sudo /tmp/puppet-enterprise*/puppet-enterprise-installer -a /tmp/install.answer
+#sudo /tmp/puppet-enterprise*/puppet-enterprise-installer -a /tmp/install.answer
+sudo /tmp/puppet-enterprise*/puppet-enterprise-installer -c /tmp/pe.conf
 echo "installing hiera-eyaml ..."
 sudo /opt/puppetlabs/puppet/bin/gem install hiera-eyaml --no-ri --no-rdoc
 sudo /opt/puppetlabs/bin/puppetserver gem install hiera-eyaml
