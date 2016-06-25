@@ -26,7 +26,6 @@ else
 fi
 
 echo "adding firewall rules ..."
-firewall-cmd --zone=public --add-port=3000/tcp --permanent
 firewall-cmd --zone=public --add-port=8140/tcp --permanent
 firewall-cmd --zone=public --add-port=443/tcp --permanent
 firewall-cmd --zone=public --add-port=61613/tcp --permanent
@@ -40,6 +39,7 @@ echo "192.168.250.110 pe-puppet.example.com" >> /etc/hosts
 # Install w/answer file
 echo "installing puppet enterprise with answer file ..."
 # Below will work with latest version unless puppet changes installer name/path
+# They did change it...
 #sudo /tmp/puppet-enterprise*/puppet-enterprise-installer -a /tmp/install.answer
 sudo /tmp/puppet-enterprise*/puppet-enterprise-installer -c /tmp/pe.conf
 echo "installing hiera-eyaml ..."
